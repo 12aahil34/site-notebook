@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Notebook</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8a5a14">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Site Notebook</h1>
+  <p>Materials, payments and dues for every site, in one place.</p>
+</header>
+<main>
+  <section class="summary" id="summary" aria-label="Summary"></section>
+
+  <form id="form" class="panel">
+    <h2>New entry</h2>
+    <label>Type
+      <select id="type">
+        <option value="material">Material bought</option>
+        <option value="expense">Labour / other expense</option>
+        <option value="income">Payment received</option>
+      </select>
+    </label>
+    <label>Date <input id="date" type="date" required></label>
+    <label>Site / project <input id="site" list="sites" placeholder="e.g. Rahman house" required></label>
+    <datalist id="sites"></datalist>
+    <label>Supplier / worker / client <input id="party" placeholder="Name"></label>
+    <label>Details <input id="desc" placeholder="e.g. Cement 50 bags" required></label>
+    <label>Amount (&#8377;) <input id="amount" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+    <label id="paidWrap" class="check"><input id="paid" type="checkbox" checked> Already paid</label>
+    <button type="submit">Save entry</button>
+  </form>
+
+  <div class="toolbar">
+    <input id="search" placeholder="Search entries" aria-label="Search entries">
+    <select id="siteFilter" aria-label="Filter by site"></select>
+    <select id="typeFilter" aria-label="Filter by type">
+      <option value="">All types</option>
+      <option value="material">Material bought</option>
+      <option value="expense">Labour / other expense</option>
+      <option value="income">Payment received</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+  <p id="empty">No entries found. Add your first entry above.</p>
+
+  <section class="backup">
+    <h2>Backup</h2>
+    <p>Entries are saved only in this browser. Download a backup regularly and keep it safe.</p>
+    <button id="backup" type="button">Download backup</button>
+    <label class="btn-label">Restore backup <input id="restore" type="file" accept=".json" hidden></label>
+    <button id="csv" type="button" class="plain">Export CSV</button>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
